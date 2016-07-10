@@ -31,4 +31,4 @@ to your `composer.json` file.
 ## Available in this package
 
 #### Behaviors
- - LinkableBehavior
+ - [LinkableBehavior](https://github.com/weblement/yii2/blob/master/docs/LinkableBehavior.md)
