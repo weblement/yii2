@@ -4,6 +4,8 @@ namespace weblement\yii2\behaviors;
 
 use yii;
 use yii\base\Behavior;
+use yii\base\Model;
+use yii\base\InvalidRouteException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\helpers\Inflector;
@@ -13,10 +15,11 @@ use Closure;
 
 class LinkableBehavior extends Behavior
 {
-    public $route = null;
+    private $_route = null;
     public $defaultAction = 'view';
     public $defaultParams = [];
     public $hotlinkTextAttr = 'name';
+    private $_linkableParams = [];
 
     public function getUrlRoute($action = null, array $params = [])
     {
@@ -24,8 +27,20 @@ class LinkableBehavior extends Behavior
             '{route}' => $this->getParsedRoute(),
             '{action}' => !empty($action) ? $action : $this->defaultAction,
         ]);
+        
+        return ArrayHelper::merge([$route], $this->parseParams($this->defaultParams), $params);
+    }
 
-        return ArrayHelper::merge([$route], $this->parsedParams, $params);
+    public function getUrlRouteTo(Model $model, $action = null)
+    {
+        if(!ArrayHelper::isIn($this->className(), ArrayHelper::getColumn($model->behaviors(), 'class'))) {
+            throw new InvalidRouteException('The "LinkableBehavior" is not attached to the specified model');
+        }
+
+        return $this->getUrlRoute(strtr('{route}/{action}', [
+            '{route}' => $model->route,
+            '{action}' => $action ?? $model->defaultAction
+        ]), $model->linkableParams);
     }
 
     public function getWebUrl($action = null, array $params = [], $scheme = false)
@@ -38,6 +53,39 @@ class LinkableBehavior extends Behavior
         return Html::a($this->owner->{$this->hotlinkTextAttr}, $this->getUrlRoute($action, $params), $options);
     }
 
+    public function getHotlinkTo(Model $model, $action = null, $options = [])
+    {
+        if(!ArrayHelper::isIn($this->className(), ArrayHelper::getColumn($model->behaviors(), 'class'))) {
+            throw new InvalidRouteException('The "LinkableBehavior" is not attached to the specified model');
+        }
+
+        return $this->getHotlink(strtr('{route}/{action}', [
+            '{route}' => $model->route,
+            '{action}' => $action ?? $model->defaultAction
+        ]), $model->linkableParams, $options);
+    }
+
+    public function getRoute()
+    {
+        return trim($this->_route, '/');
+    }
+
+    public function setRoute($route)
+    {
+        return $this->_route = $route;
+    }
+
+    public function getLinkableParams()
+    {
+        $parsedLinkableParams = $this->parseParams($this->_linkableParams);
+        return !empty($parsedLinkableParams) ? $parsedLinkableParams : [strtolower(substr(StringHelper::baseName($this->owner->className()), 0, 1)) => $this->owner->id];
+    }
+
+    public function setLinkableParams(array $linkParams)
+    {
+        $this->_linkableParams = $linkParams;
+    }
+
     protected function getParsedRoute()
     {
         return strtr('/{route}', [
@@ -45,20 +93,20 @@ class LinkableBehavior extends Behavior
         ]);
     }
 
-    protected function getParsedParams()
+    protected function parseParams(array $params)
     {
-        $params = [];
+        $parsedParams = [];
 
-        foreach($this->defaultParams as $key => $value)
+        foreach($params as $key => $value)
         {
             if($value instanceof \Closure) {
-                $params[$key] = $value($this->owner);
+                $parsedParams[$key] = $value($this->owner);
             }
             else {
-                $params[$key] = $value;
+                $parsedParams[$key] = $value;
             }
         }
 
-        return $params;
+        return $parsedParams;
     }
 }
