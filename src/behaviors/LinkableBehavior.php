@@ -21,6 +21,8 @@ class LinkableBehavior extends Behavior
     public $hotlinkTextAttr = 'name';
     private $_linkableParams = [];
 
+    public $disableHotlink = false;
+
     public function getUrlRoute($action = null, array $params = [])
     {
         $route = strtr('{route}/{action}', [
@@ -50,7 +52,9 @@ class LinkableBehavior extends Behavior
 
     public function getHotlink($action = null, $params = [], $options = [])
     {
-        return Html::a($this->owner->{$this->hotlinkTextAttr}, $this->getUrlRoute($action, $params), $options);
+        return $this->disableHotlink 
+        ? Html::tag('div', $this->owner->{$this->hotlinkTextAttr}, $options)
+        : Html::a($this->owner->{$this->hotlinkTextAttr}, $this->getUrlRoute($action, $params), $options);
     }
 
     public function getHotlinkTo(Model $model, $action = null, $options = [])
