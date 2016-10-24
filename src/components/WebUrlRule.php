@@ -15,12 +15,10 @@ class WebUrlRule extends UrlRule
 
     public function parseRequest($manager, $request)
     {
-        if($parsedRequest = parent::parseRequest($manager, $request))
-        {
+        if($parsedRequest = parent::parseRequest($manager, $request)) {
             list ($route, $params) = $parsedRequest;
 
-            if($pi = $request->get($this->paramName))
-            {
+            if($pi = $request->get($this->paramName)) {
                 $pi = $this->urlDecode($pi);
 
                 foreach ($pi as $key => &$value) {
@@ -46,17 +44,14 @@ class WebUrlRule extends UrlRule
             }
         }
 
-        foreach ($params as $key => $param)
-        {
-            if(in_array($key, $this->autoEncodeParams) && !is_null($param))
-            {
+        foreach ($params as $key => $param) {
+            if(in_array($key, $this->autoEncodeParams) && !is_null($param)) {
                 $params[$this->paramName][$key] = $param;
                 ArrayHelper::remove($params, $key);
             }
         }
 
-        if (isset($params[$this->paramName]) && is_array($params[$this->paramName]))
-        {
+        if (isset($params[$this->paramName]) && is_array($params[$this->paramName])) {
             foreach ($params[$this->paramName] as $key => &$value) {
                 $value = Json::encode($value);
             }
