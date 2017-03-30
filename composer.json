@@ -3,7 +3,7 @@
     "description": "Yii2 extensions and other useful components for yii2 applications.",
     "keywords": ["weblement", "yii2", "extensions", "behaviors", "widgets", "components"],
     "homepage": "https://github.com/weblement/",
-    "type": "yii2-comonents",
+    "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -16,12 +16,11 @@
         "source": "https://github.com/weblement/yii2"
     },
     "require": {
-        "php": ">=5.4.0",
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "~2.0.4"
     },
     "autoload" : {
         "psr-4" : {
-            "weblement\\yii2\\" : "src"
+            "weblement\\" : "src"
         }
     }
 }

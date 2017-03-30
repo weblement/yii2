@@ -1,9 +1,23 @@
-#==============================================================#
-# Composer dependencies are used for development comfort only. #
-#       They should always be ignored in the repository.       #
-#===============================================================
+# phpstorm project files
+.idea
 
-.idea/
-vendor/
-composer.lock
-tests/_output/*
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# composer vendor dir
+/vendor
+/composer.lock
+
+# composer itself is not needed
+composer.phar
+
+# Mac DS_Store Files
+.DS_Store
