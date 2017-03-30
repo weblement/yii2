@@ -32,3 +32,7 @@ to your `composer.json` file.
 
 #### Behaviors
  - [LinkableBehavior](https://github.com/weblement/yii2/blob/master/docs/LinkableBehavior.md)
+
+
+#### Components
+ - [LinkableBehavior](https://github.com/weblement/yii2/blob/master/docs/EncodeUrlRule.md)
