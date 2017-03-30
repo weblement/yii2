@@ -1,6 +1,6 @@
 # LinkableBehavior
 
-This behavior provides support for ActiveRecords that have a page to display its contents. The page can be an action in a Module or simply in a Controller. It will be easier to get links related to this record without having to write Url Route over and over again.
+This behavior provides support for Components that have a page to display its contents. The page can be an action in a Module or simply in a Controller. It will be easier to get links related to this record without having to write Url Route over and over again.
 
 ## Usage
 

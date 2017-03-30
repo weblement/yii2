@@ -22,5 +22,10 @@
         "psr-4" : {
             "weblement\\" : "src"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }

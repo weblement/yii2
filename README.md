@@ -1,11 +1,11 @@
-# Weblement Yii2 components
+# Weblement Yii2 extension
 
 This package contains various utilities, widgets, extensions and components to use with your Yii2 applications.
 
 
-[![Latest Stable Version](https://poser.pugx.org/weblement/yii2/v/stable)](https://packagist.org/packages/weblement/yii2) 
-[![Total Downloads](https://poser.pugx.org/weblement/yii2/downloads)](https://packagist.org/packages/weblement/yii2) 
-[![Latest Unstable Version](https://poser.pugx.org/weblement/yii2/v/unstable)](https://packagist.org/packages/weblement/yii2) 
+[![Latest Stable Version](https://poser.pugx.org/weblement/yii2/v/stable)](https://packagist.org/packages/weblement/yii2)
+[![Total Downloads](https://poser.pugx.org/weblement/yii2/downloads)](https://packagist.org/packages/weblement/yii2)
+[![Latest Unstable Version](https://poser.pugx.org/weblement/yii2/v/unstable)](https://packagist.org/packages/weblement/yii2)
 [![License](https://poser.pugx.org/weblement/yii2/license)](https://packagist.org/packages/weblement/yii2)
 
 ## Installation
@@ -21,7 +21,7 @@ or add
 ```json
 {
     "require": {
-        "weblement/yii2": "*"
+        "weblement/yii2": "~1.0.0"
     }
 }
 ```

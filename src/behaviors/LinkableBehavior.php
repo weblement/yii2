@@ -5,7 +5,7 @@
  * @license https://github.com/weblement/yii2/blob/master/LICENSE
  */
 
-namespace weblement\yii2\behaviors;
+namespace weblement\behaviors;
 
 use yii;
 use yii\base\Behavior;
