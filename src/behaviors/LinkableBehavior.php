@@ -72,7 +72,7 @@ class LinkableBehavior extends Behavior
     /**
      * @var bool whether to use absolute urls when using hotlinks
      */
-    public $useAbsoluteUrls = false;
+    public $useAbsoluteUrl = false;
     /**
      * @var string the route to use for the component routes. It should not contain
      * the action
@@ -227,7 +227,7 @@ class LinkableBehavior extends Behavior
     public function getHotlink($action = null, array $params = [], array $options = [])
     {
         $text = is_null($this->hotlinkTextAttr)
-            ? Url::to($this->getUrlRoute($action, $params), true)
+            ? Url::to($this->getUrlRoute($action, $params), $this->useAbsoluteUrl)
             : $this->owner->{$this->hotlinkTextAttr};
 
         return $this->disableHotlink
