@@ -35,4 +35,4 @@ to your `composer.json` file.
 
 
 #### Components
- - [LinkableBehavior](https://github.com/weblement/yii2/blob/master/docs/EncodeUrlRule.md)
+ - [EncodeUrlRule](https://github.com/weblement/yii2/blob/master/docs/EncodeUrlRule.md)
